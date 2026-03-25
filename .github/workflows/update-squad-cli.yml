@@ -38,6 +38,7 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Update formula file
+        id: formula
         run: |
           # Get current version from formula
           CURRENT_VERSION=$(grep 'version "' squad-cli.rb | cut -d'"' -f2)
@@ -47,12 +48,14 @@ jobs:
                    -e 's|sha256 ".*"|sha256 "${{ steps.npm.outputs.sha }}"|' \
                    -e 's|version ".*"|version "${{ steps.npm.outputs.version }}"|' \
                    squad-cli.rb
+            echo "updated=true" >> $GITHUB_OUTPUT
           else
             echo "Formula is already up-to-date."
-            exit 0
+            echo "updated=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Commit changes
+        if: steps.formula.outputs.updated == 'true'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
