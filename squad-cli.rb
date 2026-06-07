@@ -3,9 +3,9 @@ require "language/node"
 class SquadCli < Formula
   desc "Squad CLI — Command-line interface for the Squad multi-agent runtime"
   homepage "https://github.com/bradygaster/squad"
-  url "https://registry.npmjs.org/@bradygaster/squad-cli/-/squad-cli-0.9.4.tgz"
-  sha256 "ee30c232496129090dfac06b599374244e98b10f2546b05778fc70d364585e44"
-  version "0.9.4"
+  url "https://registry.npmjs.org/@bradygaster/squad-cli/-/squad-cli-0.10.0.tgz"
+  sha256 "b4adb16c0fd700494885a44e6d01e0009859328908ae947fd76cd76f0e98c749"
+  version "0.10.0"
   license "MIT"
 
   depends_on "node"
